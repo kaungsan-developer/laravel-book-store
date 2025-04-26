@@ -93,5 +93,11 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::get('user/review/delete/{id}', [ReviewController::class, 'delete'])->name('review.delete');
     Route::get('/search/{id}', [BookController::class, 'bookSearchByCategory'])->name('searched_books');
     Route::post('/search', [BookController::class, 'bookSearchBySearchBar'])->name('bookSearchByBar');
+
+    //profile 
+    Route::post('profile/update', [ProfileController::class, 'profileImageUpdate'])->name('profile.update');
+    Route::post('name/update', [ProfileController::class, 'nameUpdate'])->name('name.update');
+    Route::post('email/update', [ProfileController::class, 'emailUpdate'])->name('email.update');
+    Route::post('password/update', [ProfileController::class, 'passwordUpdate'])->name('password.update');
 });
 Route::get('/home', [HomeController::class, "index"])->name('home');

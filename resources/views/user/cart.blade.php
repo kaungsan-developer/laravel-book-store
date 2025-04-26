@@ -55,7 +55,8 @@
                                     <a type="submit" class="btn btn-danger btn-sm"
                                         href="{{ route('cart.delete', $book->pivot->id) }}">Remove
                                     </a>
-                                    <button class="btn btn-outline-warning btn-sm">Buy Now</button>
+                                    <button class="btn btn-outline-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#cart-modal">Buy Now</button>
                                 </div>
 
                             </div>

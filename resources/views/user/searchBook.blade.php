@@ -62,7 +62,7 @@
 @endsection
 @section('content')
     <div class="container">
-        <h2 class="text-center mt-1">All <b>Books</b></h2>
+        <h2 class="text-center mt-1">Books Found</b></h2>
         <div class="d-flex justify-content-between align-items-center mt-1 mb-3">
             <div class="line"></div>
             <div class="text-danger" style="opacity: 0.8">
@@ -76,43 +76,48 @@
         {{-- {{ dd($books) }} --}}
         <div class="row g-4 mx-auto">
 
-            @foreach ($books as $book)
-                <div class="col-md-6 col-12 col-lg-2">
-                    <a href="{{ route('book.detail', $book->id) }}" style="text-decoration: none">
-                        <div class="card book-card book-card">
-                            @if ($book->image)
-                                <img src="{{ asset("books_img_folder/$book->image") }}" class="card-img-top book-img"
-                                    alt="Book cover">
-                            @endif
-                            <div class="card-body">
 
-                                <h5 class="book-title">{{ $book->name }}</h5>
-                                <p class="book-author mb-2">{{ $book->aurthor }}</p>
-                                @if ($book->discounted_price)
-                                    <div class="float-start"
-                                        style="text-decoration: line-through;color: red; font-size: 0.8rem;">
-                                        {{ $book->price }} MMK
-                                    </div>
-                                    <div class="book-price">
-                                        {{ $book->discounted_price }} MMK
-                                    </div>
-                                @else
-                                    <div class="book-price">
-                                        {{ $book->price }} MMK
-                                    </div>
+
+            @if (count($books) == 0)
+                <div class="col-12 text-center">
+                    <h4 class="text-danger">No books found</h4>
+                </div>
+            @else
+                @foreach ($books as $book)
+                    <div class="col-md-6 col-12 col-lg-2">
+                        <a href="{{ route('book.detail', $book->id) }}" style="text-decoration: none">
+                            <div class="card book-card book-card">
+                                @if ($book->image)
+                                    <img src="{{ asset("books_img_folder/$book->image") }}" class="card-img-top book-img"
+                                        alt="Book cover">
                                 @endif
-                                {{-- <div class="d-flex justify-content-between align-items-center">
+                                <div class="card-body">
+
+                                    <h5 class="book-title">{{ $book->name }}</h5>
+                                    <p class="book-author mb-2">{{ $book->aurthor }}</p>
+                                    @if ($book->discounted_price)
+                                        <div class="float-start"
+                                            style="text-decoration: line-through;color: red; font-size: 0.8rem;">
+                                            {{ $book->price }} MMK
+                                        </div>
+                                        <div class="book-price">
+                                            {{ $book->discounted_price }} MMK
+                                        </div>
+                                    @else
+                                        <div class="book-price">
+                                            {{ $book->price }} MMK
+                                        </div>
+                                    @endif
+                                    {{-- <div class="d-flex justify-content-between align-items-center">
                                     <button class="btn btn-outline-warning btn-sm">Buy Now</button>
                                     <button class="btn btn-outline-primary btn-sm">Add to Cart</button>
                                 </div> --}}
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
-
-
-            <div class="d-flex justify-content-end">{{ $books->links() }}</div>
+                        </a>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
 @endsection

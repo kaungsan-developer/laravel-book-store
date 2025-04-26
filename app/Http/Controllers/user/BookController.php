@@ -69,12 +69,12 @@ class BookController extends Controller
 
     public function bookSearchBySearchBar(Request $request)
     {
-        // dd(request()->all());
-        $books = Book::whereAny(['name', 'aurthor'], 'like', '%' . request('searchKey') . '%')->get();
+        if (!$request->searchKey) {
+            return back();
+        }
+        $books = Book::whereAny(['name', 'aurthor'], 'like', '%' . $request->searchKey . '%')->get();
 
-        // dd($books);
-        return view('user.all_books', [
-            'books' => $books,
-        ]);
+
+        return view('user.searchBook', compact('books'));
     }
 }
