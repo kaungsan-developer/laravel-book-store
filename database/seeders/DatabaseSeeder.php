@@ -28,13 +28,13 @@ class DatabaseSeeder extends Seeder
             'position' => 'owner',
         ]);
 
-        // User::factory()->create([
-        //     'name' => 'test',
-        //     'email' => 'testing@gmail.com',
-        //     'password' => 'admin123',
-        //     'position' => 'user',
-        // ]);
-        // Book::factory()->count(30)->create();
+        User::factory()->create([
+            'name' => 'test',
+            'email' => 'testing@gmail.com',
+            'password' => 'admin123',
+            'position' => 'user',
+        ]);
+        Book::factory()->count(30)->create();
         // Order::factory()->count(30)->create();
         // BookOrder::factory()->count(10)->create();
         // UserBook::factory()->count(10)->create();
